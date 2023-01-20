@@ -27,13 +27,11 @@ class Quote < ApplicationRecord
 
   def quote_data
     uri = URI("#{QUOTABLE_URL}/quotes/#{api_id}")
-    fetch_data(uri)
+    Quote.fetch_data(uri)
   end
 
-  private
-
   # returns hash created from JSON
-  def fetch_data(uri)
+  def self.fetch_data(uri)
     JSON.parse(Net::HTTP.get(uri))
   end
 end

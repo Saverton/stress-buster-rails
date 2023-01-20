@@ -10,7 +10,7 @@ class CommentsController < ApplicationController
 
   # POST /comments
   def create
-    user = current_user
+    user = find_user
     comment = user.comments.create!(comment_params)
     render json: comment, status: :created
   end
