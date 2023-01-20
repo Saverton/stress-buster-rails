@@ -1,9 +1,8 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import HealthCard from './HealthCard';
 import useError from '../hooks/useError';
 import ErrorMessage from './ErrorMessage';
 import styled from 'styled-components';
-import { UserContext } from '../context/UserContext';
 
 const DashboardHeader = styled.header`
   background-color: var(--burnt-orange);
@@ -29,16 +28,17 @@ const Summary = styled.section`
 function Dashboard () {
   const [ metricData, setMetricData ] = useState({});
   const { error, showError, hideError } = useError();
-  const user = useContext(UserContext);
 
   useEffect(() => {
-    fetch(`http://localhost:9292/average/${user.username}`)
-      .then(r => r.json())
-      .then(data => {
-        setMetricData(data)
-      })
-      .catch(_ => showError('Server is not available, try again later.'));
-  }, [showError, user.username]);
+    fetch(`/journals/averages`)
+      .then(r => {
+        if (r.ok) {
+          r.json().then(setMetricData);
+        } else {
+          r.json().then(showError);
+        }
+      });
+  }, [showError]);
 
   const averages = {
     sleep: {

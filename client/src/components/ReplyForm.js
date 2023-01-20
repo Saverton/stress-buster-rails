@@ -1,5 +1,4 @@
-import React, { useState, useContext } from 'react';
-import { UserContext } from '../context/UserContext';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 const Form = styled.form`
@@ -20,9 +19,8 @@ const ReplySubmit = styled.input`
   border: none;
 `
 
-function ReplyForm({ commentId, onReply }) {
+function ReplyForm({ commentId, onReply, onError }) {
   const [ content, setContent ] = useState('');
-  const user = useContext(UserContext);
 
   const onChange = e => {
     setContent(e.target.value);
@@ -31,21 +29,22 @@ function ReplyForm({ commentId, onReply }) {
   const handleSubmit = e => {
     // post reply
     e.preventDefault();
-    fetch(`http://localhost:9292/reply/${commentId}`, {
+    fetch(`/comments/${commentId}/reply`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        body: content,
-        username: user.username,
-        user_id: user.id
+        body: content
       })
     })
-      .then(r => r.json())
-      .then(data => {
-        onReply(data)
-        setContent('');
+      .then(r => {
+        if (r.ok) {
+          r.json().then(onReply);
+          setContent('');
+        } else {
+          r.json().then(onError);
+        }
       });
   };
 

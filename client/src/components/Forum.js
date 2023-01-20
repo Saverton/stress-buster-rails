@@ -1,11 +1,10 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 import useError from '../hooks/useError';
 import CommentForm from "./CommentForm";
 import Comment from "./Comment";
 import ErrorMessage from './ErrorMessage';
 import { PageTitle } from "../styled-components/Title";
 import styled from 'styled-components';
-import { UserContext } from '../context/UserContext';
 
 const Container = styled.div`
   background-color: var(--burnt-orange);
@@ -60,30 +59,21 @@ const Comments = styled.ul`
 function Forum() {
   const [comments, setComments] = useState([]);
   const { error, showError, hideError } = useError();
-  const user = useContext(UserContext);
 
   useEffect(() => {
-    fetch(`http://localhost:9292/comments/${user.id}`)
-      .then((res) => res.json())
-      .then(data => setComments(data))
-      .catch(_ => showError('Server is not available, try again later.'));
-  }, [showError, user]);
-  
-  const addReply = updatedComment => {
-    setComments(comments.map(
-      comment => {
-        if (comment.id == updatedComment.id) {
-          return updatedComment;
+    fetch(`/comments/0`)
+      .then(r => {
+        if (r.ok) {
+          r.json().then(setComments);
         } else {
-          return comment;
+          r.json().then(showError);
         }
-      }
-    ));
-  };
+      });
+  }, [showError]);
 
   const renderComments = () => (
     comments.map((comment) => (
-      <Comment comment={comment} key={comment.id} onLike={updateComment} onDelete={deleteComment} onError={showError} onReply={addReply} />
+      <Comment comment={comment} key={comment.id} onLike={updateComment} onDelete={deleteComment} onError={showError} onReply={updateComment} />
     ))
   );
 

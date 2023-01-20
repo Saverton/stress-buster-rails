@@ -1,11 +1,10 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import useError from '../hooks/useError';
 import JournalCard from "./JournalCard";
 import JournalSearchForm from "./JournalSearchForm";
 import ErrorMessage from './ErrorMessage';
 import { PageTitle } from "../styled-components/Title";
 import styled from 'styled-components';
-import { UserContext } from '../context/UserContext';
 
 const JournalContainer = styled.ul`
   flex-wrap: wrap;
@@ -33,7 +32,6 @@ function PreviousJournals () {
     filter: 'all'
   });
   const { error, showError, hideError } = useError();
-  const user = useContext(UserContext);
 
   const onDelete = id => {
     setJournalList(journalList.filter(journal => journal.id !== id));
@@ -42,7 +40,7 @@ function PreviousJournals () {
   const journalsToDisplay = journalList
   .filter(
     journal => {
-      return (journal.quote_body.toLowerCase().includes(searchParams.searchTerm.toLowerCase()) ||
+      return (journal.quote.content.content.toLowerCase().includes(searchParams.searchTerm.toLowerCase()) ||
       journal.date.toLowerCase().includes(searchParams.searchTerm.toLowerCase()) ||
       journal.body.toLowerCase().includes(searchParams.searchTerm.toLowerCase())) &&
       (searchParams.filter === 'all' || searchParams.filter === journal.therapy.toString())
@@ -57,11 +55,18 @@ function PreviousJournals () {
 
   // fetch journals from db.json
   useEffect(() => {
-    fetch(`http://localhost:9292/journals/${user.username}`)
-      .then(response => response.json())
-      .then(journalData => setJournalList(journalData))
-      .catch(_ => showError('Server is not available, try again later.'));
-  }, [user.username, showError]);
+    fetch(`/journals`)
+      .then(r => {
+        if (r.ok) {
+          r.json().then(d => {
+            console.log(d);
+            setJournalList(d);
+          });
+        } else {
+          r.json().then(showError);
+        }
+      })
+  }, [showError]);
 
   return (
     <div>

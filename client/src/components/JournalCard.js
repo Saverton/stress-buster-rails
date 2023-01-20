@@ -90,7 +90,8 @@ const ExpandButton = styled.button`
 `;
 
 function JournalCard ({ journal, onDelete, onError }){
-  const { date, quote_body: content, quote_author: author, body, id } = journal;
+  const { date, body, id } = journal;
+  const { content, author } = journal.quote.content;
   const history = useHistory();
   const [ hidden, setHidden ] = useState(true);
 
@@ -123,13 +124,16 @@ function JournalCard ({ journal, onDelete, onError }){
   }
 
   const onDeleteClick = () => {
-    fetch(`http://localhost:9292/journals/${id}`, {
+    fetch(`/journals/${id}`, {
       method: 'DELETE'
     })
       .then(r => {
-        onDelete(id);
-      })
-      .catch(_ => onError('Failed to delete, try again later'));
+        if (r.ok) {
+          onDelete(id);
+        } else {
+          r.json().then(onError);
+        }
+      });
   }
 
   const metricCards = Object.keys(summary).map(
