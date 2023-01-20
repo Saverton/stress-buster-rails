@@ -1,4 +1,9 @@
 class CommentSerializer < ActiveModel::Serializer
-  attributes :id, :body, :parent_id
-  has_one :user
+  attributes :id, :body, :replies, :likes_count
+
+  belongs_to :user
+
+  def likes_count
+    object.likes.count
+  end
 end

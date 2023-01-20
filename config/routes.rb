@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
   resources :comments, only: %i[index create] do
     patch '/like', to: 'comments#like'
+    post '/reply', to: 'replies#create'
   end
 
   post '/signup', to: 'users#create'
