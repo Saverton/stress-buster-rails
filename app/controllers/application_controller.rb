@@ -16,7 +16,7 @@ class ApplicationController < ActionController::API
     render json: { errors: invalid.record.errors.full_messages }, status: :unprocessable_entity
   end
 
-  def current_user
+  def find_user
     User.find(session[:user_id])
   end
 end
