@@ -8,6 +8,7 @@ import NewJournal from "./NewJournal";
 import PreviousJournals from "./PreviousJournals";
 import Forum from "./Forum";
 import About from "./About"
+import Login from "./Login"
 import EditJournal from "./EditJournal";
 import { UserContext } from "../context/UserContext";
 
@@ -15,10 +16,7 @@ import { UserContext } from "../context/UserContext";
 function App() {
   // States
   const [randomQuote, setRandomQuote] = useState([]);
-  const [currentUser, setCurrentUser] = useState({
-    username: 'test-user',
-    id: 6
-  });
+  const [currentUser, setCurrentUser] = useState(""); //set to null
   const { error, showError, hideError } = useError();
 
   // fetch Random Quote and update random quote
@@ -51,10 +49,17 @@ function App() {
     //   .then(data => setCurrentUser(data))
     //   .catch(_ => showError('Server is not available, try again later.'));
   }, [showError]);
+
+  if (!currentUser) return (
+  <div>
+    <Header onUsername={currentUser} />
+    <Login onLogin={setCurrentUser} />
+  </div>
+  )
   
   return (
     <div>
-      <Header userState={[currentUser, setCurrentUser]} />
+      <Header />
       {error.show ? <ErrorMessage message={error.message} hideError={hideError} /> : ''}
       <UserContext.Provider value={currentUser}>
         <Switch>
