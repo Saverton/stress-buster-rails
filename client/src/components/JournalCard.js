@@ -90,7 +90,8 @@ const ExpandButton = styled.button`
 `;
 
 function JournalCard ({ journal, onDelete, onError }){
-  const { date, quote_body: content, quote_author: author, body, id } = journal;
+  const { date, body, id } = journal;
+  const { content, author } = journal.quote.content;
   const history = useHistory();
   const [ hidden, setHidden ] = useState(true);
 

@@ -10,13 +10,12 @@ import Forum from "./Forum";
 import About from "./About"
 import Login from "./Login"
 import EditJournal from "./EditJournal";
-import { UserContext } from "../context/UserContext";
 
 
 function App() {
   // States
   const [randomQuote, setRandomQuote] = useState([]);
-  const [currentUser, setCurrentUser] = useState(""); //set to null
+  const [currentUser, setCurrentUser] = useState({}); //set to null
   const { error, showError, hideError } = useError();
 
   // fetch Random Quote and update random quote
@@ -50,31 +49,29 @@ function App() {
     <div>
       <Header onSetCurrentUser={setCurrentUser}  />
       {error.show ? <ErrorMessage message={error.message} hideError={hideError} /> : ''}
-      <UserContext.Provider value={currentUser}>
-        <Switch>
-          <Route exact path="/">
-            <MainPage randomQuote={randomQuote} />
-          </Route>
-          <Route path="/journals/new">
-            <NewJournal randomQuote={randomQuote}/>
-          </Route>
-          <Route path="/journals/edit/:id">
-            <EditJournal randomQuote={randomQuote} />
-          </Route>
-          <Route path="/journals">
-            <PreviousJournals />
-          </Route>
-          <Route path="/forum">
-            <Forum />
-          </Route>
-          <Route path="/about">
-            <About />
-          </Route>
-          <Route path="*">
-            <h1>404 not found</h1>
-          </Route>
-        </Switch>
-      </UserContext.Provider>
+      <Switch>
+        <Route exact path="/">
+          <MainPage randomQuote={randomQuote} />
+        </Route>
+        <Route path="/journals/new">
+          <NewJournal randomQuote={randomQuote}/>
+        </Route>
+        <Route path="/journals/edit/:id">
+          <EditJournal randomQuote={randomQuote} />
+        </Route>
+        <Route path="/journals">
+          <PreviousJournals />
+        </Route>
+        <Route path="/forum">
+          <Forum />
+        </Route>
+        <Route path="/about">
+          <About />
+        </Route>
+        <Route path="*">
+          <h1>404 not found</h1>
+        </Route>
+      </Switch>
     </div>
   );
 }

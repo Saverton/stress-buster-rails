@@ -1,9 +1,8 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import HealthCard from './HealthCard';
 import useError from '../hooks/useError';
 import ErrorMessage from './ErrorMessage';
 import styled from 'styled-components';
-import { UserContext } from '../context/UserContext';
 
 const DashboardHeader = styled.header`
   background-color: var(--burnt-orange);
@@ -29,7 +28,6 @@ const Summary = styled.section`
 function Dashboard () {
   const [ metricData, setMetricData ] = useState({});
   const { error, showError, hideError } = useError();
-  const user = useContext(UserContext);
 
   useEffect(() => {
     fetch(`/journals/averages`)
@@ -40,7 +38,7 @@ function Dashboard () {
           r.json().then(showError);
         }
       });
-  }, [showError, user.username]);
+  }, [showError]);
 
   const averages = {
     sleep: {

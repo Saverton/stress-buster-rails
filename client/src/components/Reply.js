@@ -9,10 +9,10 @@ const ReplyContainer = styled(Container)`
 `;
 
 function Reply({ reply }) {
-  const { body, username } = reply;
+  const { body, user } = reply;
   return (
     <ReplyContainer className="flex row">
-      <Username>{username} : </Username>
+      <Username>{user.username} : </Username>
       <div>{body}</div>
     </ReplyContainer>
   )

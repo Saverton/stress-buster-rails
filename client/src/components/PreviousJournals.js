@@ -40,7 +40,7 @@ function PreviousJournals () {
   const journalsToDisplay = journalList
   .filter(
     journal => {
-      return (journal.quote_body.toLowerCase().includes(searchParams.searchTerm.toLowerCase()) ||
+      return (journal.quote.content.content.toLowerCase().includes(searchParams.searchTerm.toLowerCase()) ||
       journal.date.toLowerCase().includes(searchParams.searchTerm.toLowerCase()) ||
       journal.body.toLowerCase().includes(searchParams.searchTerm.toLowerCase())) &&
       (searchParams.filter === 'all' || searchParams.filter === journal.therapy.toString())
@@ -58,7 +58,10 @@ function PreviousJournals () {
     fetch(`/journals`)
       .then(r => {
         if (r.ok) {
-          r.json().then(setJournalList);
+          r.json().then(d => {
+            console.log(d);
+            setJournalList(d);
+          });
         } else {
           r.json().then(showError);
         }

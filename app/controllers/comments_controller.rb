@@ -27,6 +27,13 @@ class CommentsController < ApplicationController
     render json: with_liked(comment), status: :accepted
   end
 
+  # DELETE /comments/:id
+  def destroy
+    comment = find_comment
+    comment.destroy
+    head :no_content
+  end
+
   private
 
   def each_liked(comments)
@@ -35,7 +42,10 @@ class CommentsController < ApplicationController
 
   def with_liked(comment)
     comment_hash = ActiveModel::SerializableResource.new(comment).serializable_hash
-    comment_hash.merge({ liked_by_user: comment.likes.exists?(user_id: session[:user_id]) })
+    comment_hash.merge({
+                         liked_by_user: comment.likes.exists?(user_id: session[:user_id]),
+                         owned_by_user: comment[:user_id] == session[:user_id]
+                       })
   end
 
   def find_comment

@@ -1,7 +1,6 @@
 
-import React, { useState, useRef, useContext } from "react";
+import React, { useState, useRef } from "react";
 import { useLongPress } from "use-long-press";
-import { UserContext } from '../context/UserContext';
 import Reply from './Reply';
 import ReplyForm from './ReplyForm';
 
@@ -52,10 +51,9 @@ const DeleteButton = styled.button`
 
 
 function Comment({ comment, onLike, onDelete, onError, onReply }) {
-	const { id, likes, body, username, liked, user_id: userId, replies } = comment;
+	const { id, likes_count: likes, body, replies, user, liked_by_user: liked, owned_by_user: owned } = comment;
   const timer = useRef(undefined);
 	const [count, setCount] = useState(undefined);
-	const user = useContext(UserContext);
 
 	const handleLike = () => {
     fetch(`comments/${id}/like`, { method: "PATCH" })
@@ -111,7 +109,7 @@ function Comment({ comment, onLike, onDelete, onError, onReply }) {
 	return (
 		<>
 			<Container className="flex">
-				<Username>{username}:</Username>
+				<Username>{user.username}:</Username>
 				<div>{body}</div>
 				<Likes className="flex center">
 					<div style={{ marginRight: "5px" }}>
@@ -121,7 +119,7 @@ function Comment({ comment, onLike, onDelete, onError, onReply }) {
 						{"\u2665"}
 					</LikeButton>
 				</Likes>
-				{userId === user.id ? <DeleteButton {...bind()}>{count ? count : "\u232B"}</DeleteButton> : ''}
+				{owned ? <DeleteButton {...bind()}>{count ? count : "\u232B"}</DeleteButton> : ''}
 			</Container>
 			<ReplyForm onReply={onReply} commentId={id} onError={onError} />
 			{replyComponents}

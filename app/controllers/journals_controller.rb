@@ -3,7 +3,7 @@ class JournalsController < ApplicationController
 
   # GET /journals
   def index
-    render json: Journal.all, status: :ok
+    render json: find_user.journals, status: :ok
   end
 
   # GET /journals/:id

@@ -4,7 +4,6 @@ import Error from "../styled-components/Error";
 import { Input } from "../styled-components/input";
 import { FormField } from "../styled-components/FormField";
 import { Label } from "../styled-components/Label";
-import styled from "styled-components";
 
 function SignUpForm({ onLogin }) {
   const [username, setUsername] = useState("");
