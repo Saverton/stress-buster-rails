@@ -1,0 +1,279 @@
+{
+  "journals": [
+    {
+      "date": "2022-12-03",
+      "quote": {
+        "content": "Time you enjoyed wasting was not wasted.",
+        "author": "John Lennon"
+      },
+      "journalWriting": "",
+      "sleep": "8",
+      "exercise": "90",
+      "nature": "20",
+      "social": "3",
+      "mindful": "4",
+      "nutrition": "8",
+      "mental": "90",
+      "therapy": "no",
+      "id": 7
+    },
+    {
+      "date": "2022-12-04",
+      "quote": {
+        "content": "Maxim for life: You get treated in life the way you teach people to treat you.",
+        "author": "Wayne Dyer"
+      },
+      "body": "Tessst",
+      "sleep": "7",
+      "exercise": "90",
+      "nature": "60",
+      "social": "5",
+      "mindful": "5",
+      "nutrition": "7",
+      "mental": "120",
+      "therapy": "Yes",
+      "id": 8
+    },
+    {
+      "date": "2022-12-05",
+      "quote": {
+        "content": "Consider that not only do negative thoughts and emotions destroy our experience of peace, but they also undermine our health.",
+        "author": "Dalai Lama"
+      },
+      "journalWriting": "Great quote!",
+      "sleep": "6",
+      "exercise": "75",
+      "nature": "30",
+      "social": "6",
+      "mindful": "2",
+      "nutrition": "7",
+      "mental": "90",
+      "therapy": "No",
+      "id": 9
+    },
+    {
+      "date": "2022-12-06",
+      "quote": {
+        "content": "Life has no blessing like a prudent friend.",
+        "author": "Euripides"
+      },
+      "journalWriting": "Testsss",
+      "sleep": "9",
+      "exercise": "90",
+      "nature": "90",
+      "social": "5",
+      "mindful": "3",
+      "nutrition": "8",
+      "mental": "90",
+      "therapy": "Yes",
+      "id": 10
+    },
+    {
+      "date": "2022-12-07",
+      "quote": {
+        "content": "Anybody can make history. Only a great man can write it.",
+        "author": "Oscar Wilde"
+      },
+      "journalWriting": "Thoughts",
+      "sleep": "7",
+      "exercise": "50",
+      "nature": "20",
+      "social": "4",
+      "mindful": "5",
+      "nutrition": "6",
+      "mental": "60",
+      "therapy": "No",
+      "id": 12
+    },
+    {
+      "date": "2022-12-08",
+      "quote": {
+        "content": "Keep your eyes on the stars and your feet on the ground.",
+        "author": "Theodore Roosevelt"
+      },
+      "journalWriting": "Hello!",
+      "sleep": "4",
+      "exercise": "3",
+      "nature": "1",
+      "social": "12",
+      "mindful": "9",
+      "nutrition": "8",
+      "mental": "4",
+      "therapy": "Yes",
+      "id": 13
+    },
+    {
+      "date": "2022-12-09",
+      "quote": {
+        "content": "Vanity can easily overtake wisdom. It usually overtakes common sense.",
+        "author": "Julian Casablancas"
+      },
+      "journalWriting": "Testing",
+      "sleep": "9",
+      "exercise": "60",
+      "nature": "15",
+      "social": "5",
+      "mindful": "5",
+      "nutrition": "7",
+      "mental": "90",
+      "therapy": "No",
+      "id": 14
+    },
+    {
+      "date": "2022-12-09",
+      "quote": {
+        "content": "While we stop to think, we often miss our opportunity.",
+        "author": "Publilius Syrus"
+      },
+      "journalWriting": "Write something!",
+      "sleep": "7",
+      "exercise": "60",
+      "nature": "30",
+      "social": "6",
+      "mindful": "5",
+      "nutrition": "9",
+      "mental": "90",
+      "therapy": "Yes",
+      "id": 15
+    },
+    {
+      "date": "2022-12-09",
+      "quote": {
+        "content": "No bird soars too high if he soars with his own wings.",
+        "author": "William Blake"
+      },
+      "journalWriting": "Whatever!",
+      "sleep": "7",
+      "exercise": "45",
+      "nature": "60",
+      "social": "10",
+      "mindful": "5",
+      "nutrition": "8",
+      "mental": "60",
+      "therapy": "Yes",
+      "id": 16
+    },
+    {
+      "date": "2022-12-23",
+      "journalWriting": "Is love really a flower though? I would argue that it is not so... That was spontaneously poetic!",
+      "sleep": "8",
+      "exercise": "30",
+      "nature": "5",
+      "social": "5",
+      "mindful": "2",
+      "nutrition": "5",
+      "mental": "20",
+      "therapy": "No",
+      "quote": {
+        "_id": "AugfMwbMNbp",
+        "content": "Love is the flower you've got to let grow.",
+        "author": "John Lennon",
+        "tags": [
+          "famous-quotes"
+        ],
+        "authorSlug": "john-lennon",
+        "length": 42,
+        "dateAdded": "2019-02-17",
+        "dateModified": "2019-02-17"
+      },
+      "id": 17
+    },
+    {
+      "date": "2022-12-23",
+      "journalWriting": "What happens if I replace all instances of greenSpace with nature? Huh...",
+      "sleep": "6",
+      "exercise": "20",
+      "nature": "40",
+      "social": "2",
+      "mindful": "10",
+      "nutrition": "6",
+      "mental": "90",
+      "therapy": "No",
+      "quote": {
+        "_id": "1SHCOeLgKWa0",
+        "content": "A wise man will make more opportunities than he finds.",
+        "author": "Francis Bacon",
+        "tags": [
+          "famous-quotes"
+        ],
+        "authorSlug": "francis-bacon",
+        "length": 54,
+        "dateAdded": "2021-02-12",
+        "dateModified": "2021-02-12"
+      },
+      "id": 18
+    },
+    {
+      "date": "2022-12-23",
+      "journalWriting": "This is a test to make sure the renaming of all instances of mentalHealth -> mental went swimmingly. Power to the people Desmond!",
+      "sleep": "4",
+      "exercise": "56",
+      "nature": "3",
+      "social": "25",
+      "mindful": "0",
+      "nutrition": "2",
+      "mental": "25",
+      "therapy": "Yes",
+      "quote": {
+        "_id": "WLeZo2pcwiPB",
+        "content": "We must not allow ourselves to become like the system we oppose.",
+        "author": "Desmond Tutu",
+        "tags": [
+          "character"
+        ],
+        "authorSlug": "desmond-tutu",
+        "length": 64,
+        "dateAdded": "2019-02-11",
+        "dateModified": "2022-07-04"
+      },
+      "id": 19
+    }
+  ],
+  "comments": [
+    {
+      "comment": "Test",
+      "likes": 20,
+      "id": 1
+    },
+    {
+      "comment": "TEST!",
+      "likes": 6,
+      "id": 2
+    },
+    {
+      "comment": "TEST...",
+      "likes": 6,
+      "id": 3
+    },
+    {
+      "comment": "Final test!",
+      "likes": 41,
+      "id": 5
+    },
+    {
+      "comment": "Hello!",
+      "likes": 1,
+      "id": 6
+    },
+    {
+      "comment": "test",
+      "likes": 0,
+      "id": 7
+    },
+    {
+      "comment": "I LOVE THIS APP!",
+      "likes": 0,
+      "id": 8
+    },
+    {
+      "comment": "I LOVE THIS APP!",
+      "likes": 0,
+      "id": 9
+    },
+    {
+      "comment": "This comment is added immediately after the feature that causes the form to empty when submitting was added.",
+      "likes": 45,
+      "id": 10
+    }
+  ]
+}
