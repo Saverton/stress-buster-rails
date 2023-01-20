@@ -30,14 +30,13 @@ function App() {
     //     }
     //   });
 
-    fetch('/logout', 
+    fetch('/comments/1/like', 
     {
-    //   method: 'DELETE',
-    //   headers: { 'Content-Type': 'application/json' },
-    //   body: JSON.stringify({
-    //     username: 'Scott M.',
-    //     password: 'super_secret'
-    //   })
+      method: 'PATCH',
+      // headers: { 'Content-Type': 'application/json' },
+      // body: JSON.stringify({
+      //   body: "hello world"
+      // })
     }
     )
       .then(r => {

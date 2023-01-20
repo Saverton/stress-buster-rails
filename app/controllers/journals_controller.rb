@@ -14,8 +14,8 @@ class JournalsController < ApplicationController
 
   # POST /journals
   def create
-    journal = find_user.journals.create!(journal_params)
-    journal.quote = Quote.day(journal.date)
+    quote = Quote.day(params[:date])
+    journal = find_user.journals.create!(journal_params.merge({quote_id: quote.id}))
     render json: journal, status: :created
   end
 
@@ -35,7 +35,7 @@ class JournalsController < ApplicationController
 
   # GET journals/averages
   def average
-    averages = find_user.journals.average(:sleep, :exercise, :nature, :social, :mindful, :mental, :nutrition)
+    averages = find_user.averages
     render json: averages, status: :ok
   end
 
