@@ -40,7 +40,7 @@ const Logo = styled.img`
   max-height: 10em;
 `;
 
-const DummyLogin = styled.div`
+const Username = styled.div`
   position: absolute;
   right: 10rem;
   z-index: 1;
@@ -54,17 +54,7 @@ const DummyLogin = styled.div`
   }
 `;
 
-function Header({ userState }) {
-  const [ currentUser, setCurrentUser ] = userState;
-
-  const onSubmit = e => {
-    e.preventDefault();
-    const username = e.target.username.value;
-    fetch(`http://localhost:9292/users/${username}`)
-      .then(r => r.json())
-      .then(userData => setCurrentUser(userData));
-  }
-
+function Header( {onUsername}) {
   return (
     <StyledHeader className= "flex row">
       <div>
@@ -75,14 +65,10 @@ function Header({ userState }) {
         <SubTitle> Helping you cope with stress, one day at a time</SubTitle>
       </Title>
 
-      <DummyLogin>
-        <p>Current User: {currentUser.username}</p>
-        <form onSubmit={onSubmit}>
-          <label>Enter Username : </label>
-          <input type="text" name="username" />
-          <input type="submit" value="Change User" />
-        </form>
-      </DummyLogin>
+      <Username>
+        {!onUsername ? '' :
+        <p>Welcome: {onUsername.username}</p>}
+      </Username>
 
       <div style={{position: 'relative', width: '100%'}}>
         <NavBar />
