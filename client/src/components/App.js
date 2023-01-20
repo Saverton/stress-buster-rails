@@ -30,12 +30,12 @@ function App() {
     //     }
     //   });
 
-    fetch('/journals/averages', 
+    fetch('/comments/1/like', 
     {
-      // method: 'POST',
+      method: 'PATCH',
       // headers: { 'Content-Type': 'application/json' },
       // body: JSON.stringify({
-      //   
+      //   body: "hello world"
       // })
     }
     )

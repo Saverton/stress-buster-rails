@@ -1,13 +1,10 @@
 class CommentSerializer < ActiveModel::Serializer
-  attributes :id, :body, :replies, :likes_count, :liked_by_user
+  attributes :id, :body, :likes_count
 
   belongs_to :user
+  has_many :replies
 
   def likes_count
     object.likes.count
-  end
-
-  def liked_by_user
-    object.likes.where(user_id: sessions[:user_id]).any?
   end
 end

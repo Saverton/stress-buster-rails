@@ -6,10 +6,11 @@ Rails.application.routes.draw do
   get '/quotes/today', to: 'quotes#today'
   get '/quotes/:date', to: 'quotes#show'
 
-  resources :comments, only: %i[index create] do
+  resources :comments, only: %i[create] do
     patch '/like', to: 'comments#like'
     post '/reply', to: 'replies#create'
   end
+  get 'comments/:page', to: 'comments#index'
 
   post '/signup', to: 'users#create'
 
