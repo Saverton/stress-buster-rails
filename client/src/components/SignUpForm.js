@@ -52,7 +52,7 @@ function SignUpForm({ onLogin }) {
         />
       </FormField>
       <FormField>
-        <Label htmlFor="username">Email</Label>
+        <Label htmlFor="email">Email</Label>
         <Input
           type="text"
           id="email"

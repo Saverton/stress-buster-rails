@@ -28,11 +28,17 @@ function App() {
         showError('Server is not available, try again later.');
       });
     
-    fetch('http://localhost:9292/users/test-user')
-      .then(r => r.json())
-      .then(data => setCurrentUser(data))
-      .catch(_ => showError('Server is not available, try again later.'));
-  }, [showError]);
+      fetch("/me").then((r) => {
+        if (r.ok) {
+          r.json().then((data) => setCurrentUser(data));
+        }
+      });
+
+    // fetch('http://localhost:9292/users/test-user')
+    //   .then(r => r.json())
+    //   .then(data => setCurrentUser(data))
+    //   .catch(_ => showError('Server is not available, try again later.'));
+  }, []);
 
   if (!currentUser) return (
   <div>
@@ -43,7 +49,7 @@ function App() {
   
   return (
     <div>
-      <Header />
+      <Header onSetCurrentUser={setCurrentUser}  />
       {error.show ? <ErrorMessage message={error.message} hideError={hideError} /> : ''}
       <UserContext.Provider value={currentUser}>
         <Switch>
