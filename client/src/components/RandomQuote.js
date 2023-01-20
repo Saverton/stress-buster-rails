@@ -12,7 +12,7 @@ const Quote = styled.blockquote`
 `;
 
 function RandomQuote ({ randomQuote }){
-  const { author, content } = randomQuote.content;
+  const { author, content } = randomQuote.content || {};
 
   return (
     <Quote>

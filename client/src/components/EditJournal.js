@@ -8,7 +8,7 @@ import { JournalHeader, FormContainer } from '../styled-components/JournalForms'
 import { PageTitle } from '../styled-components/Title';
 import { DEFAULT_FORM_DATA } from '../constants/formData';
 
-function EditJournal ({ randomQuote }) {
+function EditJournal () {
   const { id } = useParams();
   const [ formData, setFormData ] = useState(DEFAULT_FORM_DATA);
   const history = useHistory();
@@ -49,7 +49,7 @@ function EditJournal ({ randomQuote }) {
       <FormContainer> 
         <br />
         <JournalHeader>
-          <RandomQuote randomQuote={randomQuote} />
+          <RandomQuote randomQuote={formData.quote} />
         </JournalHeader>
         <br />
         <JournalForm handleSubmit={handleSubmit} formState={[formData, setFormData]} />

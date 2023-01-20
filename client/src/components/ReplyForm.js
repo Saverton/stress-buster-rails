@@ -41,6 +41,7 @@ function ReplyForm({ commentId, onReply, onError }) {
       .then(r => {
         if (r.ok) {
           r.json().then(onReply);
+          setContent('');
         } else {
           r.json().then(onError);
         }

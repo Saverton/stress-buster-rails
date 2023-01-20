@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, useHistory } from "react-router-dom";
 import useError from '../hooks/useError';
 import Header from "./Header";
 import ErrorMessage from "./ErrorMessage";
@@ -14,9 +14,10 @@ import EditJournal from "./EditJournal";
 
 function App() {
   // States
-  const [randomQuote, setRandomQuote] = useState([]);
+  const [randomQuote, setRandomQuote] = useState({});
   const [currentUser, setCurrentUser] = useState({}); //set to null
   const { error, showError, hideError } = useError();
+  const history = useHistory();
 
   // fetch Random Quote and update random quote
   useEffect(() => {
@@ -33,6 +34,8 @@ function App() {
     fetch("/me").then((r) => {
       if (r.ok) {
         r.json().then(setCurrentUser);
+      } else {
+        history.push('/login');
       }
     });
   }, [showError]);
@@ -57,7 +60,7 @@ function App() {
           <NewJournal randomQuote={randomQuote}/>
         </Route>
         <Route path="/journals/edit/:id">
-          <EditJournal randomQuote={randomQuote} />
+          <EditJournal />
         </Route>
         <Route path="/journals">
           <PreviousJournals />

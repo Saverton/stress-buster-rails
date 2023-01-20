@@ -70,22 +70,10 @@ function Forum() {
         }
       });
   }, [showError]);
-  
-  const addReply = updatedComment => {
-    setComments(comments.map(
-      comment => {
-        if (comment.id === updatedComment.id) {
-          return updatedComment;
-        } else {
-          return comment;
-        }
-      }
-    ));
-  };
 
   const renderComments = () => (
     comments.map((comment) => (
-      <Comment comment={comment} key={comment.id} onLike={updateComment} onDelete={deleteComment} onError={showError} onReply={addReply} />
+      <Comment comment={comment} key={comment.id} onLike={updateComment} onDelete={deleteComment} onError={showError} onReply={updateComment} />
     ))
   );
 
