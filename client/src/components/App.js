@@ -21,13 +21,30 @@ function App() {
 
   // fetch Random Quote and update random quote
   useEffect(() => {
-    fetch('http://localhost:9292/quote-today')
-      .then(response => response.json())
-      .then(response => setRandomQuote(response))
-      .catch(_ => {
-        showError('Server is not available, try again later.');
-      });
+    // fetch('/quotes/today')
+    //   .then(r => {
+    //     if (r.ok) {
+    //       r.json().then(console.log);
+    //     } else {
+    //       r.json().then(console.log);
+    //     }
+    //   });
+
+    fetch('/comments/1/like', 
+    {
+      method: 'PATCH',
+      // headers: { 'Content-Type': 'application/json' },
+      // body: JSON.stringify({
+      //   body: "hello world"
+      // })
+    }
+    )
+      .then(r => {
+        console.log(r.status)
+        r.json().then(console.log);
+      })
     
+
       fetch("/me").then((r) => {
         if (r.ok) {
           r.json().then((data) => setCurrentUser(data));
@@ -39,6 +56,7 @@ function App() {
     //   .then(data => setCurrentUser(data))
     //   .catch(_ => showError('Server is not available, try again later.'));
   }, []);
+
 
   if (!currentUser) return (
   <div>
