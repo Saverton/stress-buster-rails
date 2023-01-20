@@ -24,7 +24,7 @@ class Quote < ApplicationRecord
     quote = fetch_data(uri)
     create!(api_id: quote['_id'], date: date.to_s)
   end
-  
+
   def quote_data
     uri = URI("#{QUOTABLE_URL}/quotes/#{api_id}")
     fetch_data(uri)
