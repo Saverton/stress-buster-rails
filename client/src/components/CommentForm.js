@@ -1,8 +1,7 @@
-import { useState, useContext } from "react";
+import { useState } from "react";
 import styled from 'styled-components';
 import { Button } from '../styled-components/Buttons';
 import { Textbox } from '../styled-components/Textbox';
-import { UserContext } from '../context/UserContext';
 
 const Container = styled.div`
   align-items: center;
@@ -31,32 +30,26 @@ const SubmitButton = styled(Button)`
 
 function CommentForm({ onAddComment, onError }) {
   const [comment, setComment] = useState("");
-  const user = useContext(UserContext);
  
   const handleCommentFormSubmit = e => {
-    if (comment.length === 0) {
-      onError('You cannot submit an empty commment.');
-      return;
-    }
-
     const configObject = {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        body: comment,
-        likes: 0,
-        username: user.username
+        body: comment
       }),
     };
-    fetch(`http://localhost:9292/comments`, configObject)
-      .then(res => res.json())
-      .then(newComment => {
-        onAddComment(newComment);
-        setComment('');
-      })
-      .catch(_ => onError('Couldn\'t save comment, try again later.'));
+    fetch(`/comments`, configObject)
+      .then(r => {
+        if (r.ok) {
+          r.json().then(onAddComment);
+          setComment('');
+        } else {
+          r.json().then(onError);
+        }
+      });
   };
   
   return (

@@ -123,13 +123,16 @@ function JournalCard ({ journal, onDelete, onError }){
   }
 
   const onDeleteClick = () => {
-    fetch(`http://localhost:9292/journals/${id}`, {
+    fetch(`/journals/${id}`, {
       method: 'DELETE'
     })
       .then(r => {
-        onDelete(id);
-      })
-      .catch(_ => onError('Failed to delete, try again later'));
+        if (r.ok) {
+          onDelete(id);
+        } else {
+          r.json().then(onError);
+        }
+      });
   }
 
   const metricCards = Object.keys(summary).map(

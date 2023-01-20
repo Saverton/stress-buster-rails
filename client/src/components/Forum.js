@@ -1,11 +1,10 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 import useError from '../hooks/useError';
 import CommentForm from "./CommentForm";
 import Comment from "./Comment";
 import ErrorMessage from './ErrorMessage';
 import { PageTitle } from "../styled-components/Title";
 import styled from 'styled-components';
-import { UserContext } from '../context/UserContext';
 
 const Container = styled.div`
   background-color: var(--burnt-orange);
@@ -60,19 +59,22 @@ const Comments = styled.ul`
 function Forum() {
   const [comments, setComments] = useState([]);
   const { error, showError, hideError } = useError();
-  const user = useContext(UserContext);
 
   useEffect(() => {
-    fetch(`http://localhost:9292/comments/${user.id}`)
-      .then((res) => res.json())
-      .then(data => setComments(data))
-      .catch(_ => showError('Server is not available, try again later.'));
-  }, [showError, user]);
+    fetch(`/comments/0`)
+      .then(r => {
+        if (r.ok) {
+          r.json().then(setComments);
+        } else {
+          r.json().then(showError);
+        }
+      });
+  }, [showError]);
   
   const addReply = updatedComment => {
     setComments(comments.map(
       comment => {
-        if (comment.id == updatedComment.id) {
+        if (comment.id === updatedComment.id) {
           return updatedComment;
         } else {
           return comment;

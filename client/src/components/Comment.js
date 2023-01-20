@@ -1,5 +1,5 @@
 
-import React, {useState, useRef, useContext} from "react";
+import React, { useState, useRef, useContext } from "react";
 import { useLongPress } from "use-long-press";
 import { UserContext } from '../context/UserContext';
 import Reply from './Reply';
@@ -58,26 +58,25 @@ function Comment({ comment, onLike, onDelete, onError, onReply }) {
 	const user = useContext(UserContext);
 
 	const handleLike = () => {
-		const configObject = {
-      method: "PATCH",
-      headers: {
-				"Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-				user_id: user.id
-      })
-    };
-    fetch(`http://localhost:9292/comment/like/${id}`, configObject)
-			.then(res => res.json())
-      .then(onLike)
-			.catch(_ => onError('Server is unavailable, could not save.'));
+    fetch(`comments/${id}/like`, { method: "PATCH" })
+			.then(r => {
+				if (r.ok) {
+          r.json().then(onLike);
+        } else {
+          r.json().then(onError);
+        }
+			})
 	}
 
 	const handleDelete = () => {
-		fetch(`http://localhost:9292/comments/${id}`, { method: "DELETE" })
-			.then(res => res.json())
-			.then(() => onDelete(comment))
-			.catch(_ => onError('Server is unavailable, could not save.'));
+		fetch(`/comments/${id}`, { method: "DELETE" })
+			.then(r => {
+				if (r.ok) {
+					onDelete(comment);
+				} else {
+					r.json().then(onError);
+				}
+			});
 	}
 
 	const resetTimer = () => {
@@ -124,7 +123,7 @@ function Comment({ comment, onLike, onDelete, onError, onReply }) {
 				</Likes>
 				{userId === user.id ? <DeleteButton {...bind()}>{count ? count : "\u232B"}</DeleteButton> : ''}
 			</Container>
-			<ReplyForm onReply={onReply} commentId={id} />
+			<ReplyForm onReply={onReply} commentId={id} onError={onError} />
 			{replyComponents}
 		</>
 	);

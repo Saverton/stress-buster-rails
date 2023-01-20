@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
-  resources :journals do
-    get '/averages', to: 'journals#average'
-  end
+  resources :journals
+  get '/journals/averages', to: 'journals#average'
 
   get '/quotes/today', to: 'quotes#today'
   get '/quotes/:date', to: 'quotes#show'

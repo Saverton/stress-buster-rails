@@ -32,12 +32,14 @@ function Dashboard () {
   const user = useContext(UserContext);
 
   useEffect(() => {
-    fetch(`http://localhost:9292/average/${user.username}`)
-      .then(r => r.json())
-      .then(data => {
-        setMetricData(data)
-      })
-      .catch(_ => showError('Server is not available, try again later.'));
+    fetch(`/journals/averages`)
+      .then(r => {
+        if (r.ok) {
+          r.json().then(setMetricData);
+        } else {
+          r.json().then(showError);
+        }
+      });
   }, [showError, user.username]);
 
   const averages = {

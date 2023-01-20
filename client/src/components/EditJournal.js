@@ -15,26 +15,32 @@ function EditJournal ({ randomQuote }) {
   const { error, showError, hideError } = useError();
 
   useEffect(() => {
-    fetch(`http://localhost:9292/journal/${id}`)
-      .then(r => r.json())
-      .then(data => setFormData(data))
-      .catch(_ => showError('Server is not available, try again later.'));
+    fetch(`/journals/${id}`)
+      .then(r => {
+        if (r.ok) {
+          r.json().then(setFormData);
+        } else {
+          r.json().then(showError);
+        }
+      });
   }, [id, showError]);
 
   function handleSubmit(event) {
     event.preventDefault();
-    fetch(`http://localhost:9292/journals/${id}`, {
+    fetch(`/journals/${id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(formData)
     })
-      .then((response) => response.json())
-      .then(() => {
-        history.push('/journals');
-      })
-      .catch(_ => showError('Unable to save to server, try again later.'));
+      .then(r => {
+        if (r.ok) {
+          history.push('/journals');
+        } else {
+          r.json().then(showError);
+        }
+      });
   }
 
   return (

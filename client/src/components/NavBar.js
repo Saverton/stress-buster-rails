@@ -43,7 +43,7 @@ const StyledNavLink = styled(NavLink)`
   }
 `;
 
-function NavBar( onSetCurrentUser ) {
+function NavBar({ onSetCurrentUser }) {
   function handleLogoutClick() {
     fetch("/logout", { method: "DELETE" }).then((r) => {
       if (r.ok) {

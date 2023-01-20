@@ -6,10 +6,10 @@ function useError() {
     message: ''
   });
 
-  const showError = useCallback(msg => {
+  const showError = useCallback(err => {
     setError({
       show: true,
-      message: msg
+      message: err.errors.join(', ')
     });
   }, []);
 

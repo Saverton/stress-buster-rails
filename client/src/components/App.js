@@ -21,48 +21,29 @@ function App() {
 
   // fetch Random Quote and update random quote
   useEffect(() => {
-    // fetch('/quotes/today')
-    //   .then(r => {
-    //     if (r.ok) {
-    //       r.json().then(console.log);
-    //     } else {
-    //       r.json().then(console.log);
-    //     }
-    //   });
-
-    fetch('/comments/1/like', 
-    {
-      method: 'PATCH',
-      // headers: { 'Content-Type': 'application/json' },
-      // body: JSON.stringify({
-      //   body: "hello world"
-      // })
-    }
-    )
+    fetch('/quotes/today')
       .then(r => {
-        console.log(r.status)
-        r.json().then(console.log);
-      })
-    
-
-      fetch("/me").then((r) => {
         if (r.ok) {
-          r.json().then((data) => setCurrentUser(data));
+          r.json().then(setRandomQuote);
+        } else {
+          r.json().then(showError);
         }
       });
+    
 
-    // fetch('http://localhost:9292/users/test-user')
-    //   .then(r => r.json())
-    //   .then(data => setCurrentUser(data))
-    //   .catch(_ => showError('Server is not available, try again later.'));
-  }, []);
+    fetch("/me").then((r) => {
+      if (r.ok) {
+        r.json().then(setCurrentUser);
+      }
+    });
+  }, [showError]);
 
 
   if (!currentUser) return (
-  <div>
-    <Header onUsername={currentUser} />
-    <Login onLogin={setCurrentUser} />
-  </div>
+    <div>
+      <Header onUsername={currentUser} />
+      <Login onLogin={setCurrentUser} />
+    </div>
   )
   
   return (
