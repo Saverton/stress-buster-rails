@@ -70,8 +70,6 @@ function NavBar( onSetCurrentUser ) {
         <NavButton >About</NavButton>
       </StyledNavLink>
         <NavButton onClick={handleLogoutClick}>Logout</NavButton>
-      
-      
     </StyledNavBar>
   );
 }
