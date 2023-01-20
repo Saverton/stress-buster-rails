@@ -2,6 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import styled from 'styled-components';
 
+
 const StyledNavBar = styled.nav`
   background-color: white;
   border-radius: 10px;
@@ -42,7 +43,15 @@ const StyledNavLink = styled(NavLink)`
   }
 `;
 
-function NavBar() {
+function NavBar( onSetCurrentUser ) {
+  function handleLogoutClick() {
+    fetch("/logout", { method: "DELETE" }).then((r) => {
+      if (r.ok) {
+        onSetCurrentUser(null);
+      }
+    });
+  }
+
   return (
     <StyledNavBar className="flex row center">
       <StyledNavLink className="link" exact to="/">
@@ -60,6 +69,7 @@ function NavBar() {
       <StyledNavLink className="link" to="/about">
         <NavButton >About</NavButton>
       </StyledNavLink>
+        <NavButton onClick={handleLogoutClick}>Logout</NavButton>
     </StyledNavBar>
   );
 }
