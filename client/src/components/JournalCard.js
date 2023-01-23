@@ -120,7 +120,7 @@ function JournalCard ({ journal, onDelete, onError }){
   }
 
   const onEditClick = () => {
-    history.push(`journals/edit/${id}`);
+    history.push(`my-journals/edit/${id}`);
   }
 
   const onDeleteClick = () => {

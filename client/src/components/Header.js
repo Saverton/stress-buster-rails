@@ -54,7 +54,7 @@ const Username = styled.div`
   }
 `;
 
-function Header( {onUsername, onSetCurrentUser}) {
+function Header({currentUser, onUsername, onSetCurrentUser}) {
   return (
     <StyledHeader className= "flex row">
       <div>
@@ -71,7 +71,7 @@ function Header( {onUsername, onSetCurrentUser}) {
       </Username>
 
       <div style={{position: 'relative', width: '100%'}}>
-        <NavBar onSetCurrentUser={onSetCurrentUser} />
+        <NavBar currentUser={currentUser} onSetCurrentUser={onSetCurrentUser} />
       </div>
     </StyledHeader>
   );

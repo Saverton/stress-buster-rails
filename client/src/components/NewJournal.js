@@ -54,7 +54,7 @@ function NewJournal ({ randomQuote }) {
     })
       .then(r => {
         if (r.ok) {
-          history.push('/journals');
+          history.push('/my-journals');
         } else {
           r.json().then(showError);
         }

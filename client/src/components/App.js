@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Switch, Route, useHistory } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import useError from '../hooks/useError';
 import Header from "./Header";
 import ErrorMessage from "./ErrorMessage";
@@ -17,7 +17,6 @@ function App() {
   const [randomQuote, setRandomQuote] = useState({});
   const [currentUser, setCurrentUser] = useState({}); //set to null
   const { error, showError, hideError } = useError();
-  const history = useHistory();
 
   // fetch Random Quote and update random quote
   useEffect(() => {
@@ -44,11 +43,11 @@ function App() {
       <Header onUsername={currentUser} />
       <Login onLogin={setCurrentUser} />
     </div>
-  )
+  );
   
   return (
     <div>
-      <Header onSetCurrentUser={setCurrentUser}  />
+      <Header currentUser={currentUser} onSetCurrentUser={setCurrentUser}  />
       {error.show ? <ErrorMessage message={error.message} hideError={hideError} /> : ''}
       <Switch>
         <Route exact path="/">
