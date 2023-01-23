@@ -10,9 +10,6 @@ const ResourceButton = styled(Button)`
   padding: 0.3rem;
   border-radius: 10px;
   min-width: 70%;
-  min-height: 100%
-
-
 
   &:hover {
     background-color: white;
