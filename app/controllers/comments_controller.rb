@@ -4,7 +4,7 @@ class CommentsController < ApplicationController
 
   # GET /comments/:page => max 25 w/ replies
   def index
-    comments = Comment.where(parent_id: nil).order(:created_at, :desc).limit(25).offset(params[:page].to_i * 25)
+    comments = Comment.where(parent_id: nil).order(created_at: :desc).limit(25).offset(params[:page].to_i * 25)
     render json: each_liked(comments), status: :ok
   end
 
