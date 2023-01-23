@@ -43,7 +43,7 @@ const StyledNavLink = styled(NavLink)`
   }
 `;
 
-function NavBar({ onSetCurrentUser }) {
+function NavBar({ currentUser, onSetCurrentUser }) {
   function handleLogoutClick() {
     fetch("/logout", { method: "DELETE" }).then((r) => {
       if (r.ok) {
@@ -57,19 +57,19 @@ function NavBar({ onSetCurrentUser }) {
       <StyledNavLink className="link" exact to="/">
         <NavButton>Dashboard</NavButton>
       </StyledNavLink>
-      <StyledNavLink className="link" to="/journals/new">
+      <StyledNavLink className="link" to="/my-journals/new">
         <NavButton>New Journal</NavButton>
       </StyledNavLink>
-      <StyledNavLink className="link" to="/journals" exact>
+      <StyledNavLink className="link" to="/my-journals" exact>
         <NavButton>Past Journals</NavButton>
       </StyledNavLink>
-      <StyledNavLink className="link" to="/forum">
+      <StyledNavLink className="link" to="/community-forum">
         <NavButton>Community Forum</NavButton>
       </StyledNavLink>
       <StyledNavLink className="link" to="/about">
         <NavButton >About</NavButton>
       </StyledNavLink>
-        <NavButton onClick={handleLogoutClick}>Logout</NavButton>
+        <NavButton onClick={handleLogoutClick}>{currentUser ? "Logout" : "Login"}</NavButton>
     </StyledNavBar>
   );
 }
