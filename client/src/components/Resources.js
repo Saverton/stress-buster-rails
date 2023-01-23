@@ -102,11 +102,11 @@ function Resources() {
       </a>
       <p><em>Professional or Community Resources</em></p>
       <p>Get Local Referrals: </p>
-      <a {...bind1()}  href=''>
+      <a {...bind1()}  href="tel:+1-800-662-4357">
         <ResourceButton  style={{backgroundColor: 'var(--dark-green)'}}>{samhsaCount ? `Calling in ${samhsaCount}` : "SAMHSA's National Helpline"}</ResourceButton>    
       </a>
       <p>Help is Always Available:</p>
-      <a href="">
+      <a href="tel:988">
         <ResourceButton {...bind2()} style={{backgroundColor: 'var(--wine-purple)'}}>{crisisCount ? `Calling in ${crisisCount}` : "988 Suicide & Crisis Lifeline"}</ResourceButton>
       </a>
     </ResourceSection>
