@@ -66,7 +66,7 @@ function Header({currentUser, onUsername, onSetCurrentUser}) {
       </Title>
 
       <Username>
-        {!onUsername ? '' :
+        {!currentUser ? '' :
         <p>Welcome: {onUsername.username}</p>}
       </Username>
 

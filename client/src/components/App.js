@@ -15,7 +15,7 @@ import EditJournal from "./EditJournal";
 function App() {
   // States
   const [randomQuote, setRandomQuote] = useState({});
-  const [currentUser, setCurrentUser] = useState({}); //set to null
+  const [currentUser, setCurrentUser] = useState(null); //set to null
   const { error, showError, hideError } = useError();
 
   // fetch Random Quote and update random quote
@@ -47,7 +47,7 @@ function App() {
   
   return (
     <div>
-      <Header currentUser={currentUser} onSetCurrentUser={setCurrentUser}  />
+      <Header currentUser={currentUser} onSetCurrentUser={setCurrentUser} onUsername={currentUser} />
       {error.show ? <ErrorMessage message={error.message} hideError={hideError} /> : ''}
       <Switch>
         <Route exact path="/">
