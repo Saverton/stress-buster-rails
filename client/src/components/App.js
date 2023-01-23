@@ -34,8 +34,6 @@ function App() {
     fetch("/me").then((r) => {
       if (r.ok) {
         r.json().then(setCurrentUser);
-      } else {
-        history.push('/login');
       }
     });
   }, [showError]);
@@ -56,16 +54,16 @@ function App() {
         <Route exact path="/">
           <MainPage randomQuote={randomQuote} />
         </Route>
-        <Route path="/journals/new">
+        <Route path="/my-journals/new">
           <NewJournal randomQuote={randomQuote}/>
         </Route>
-        <Route path="/journals/edit/:id">
+        <Route path="/my-journals/edit/:id">
           <EditJournal />
         </Route>
-        <Route path="/journals">
+        <Route path="/my-journals">
           <PreviousJournals />
         </Route>
-        <Route path="/forum">
+        <Route path="/community-forum">
           <Forum />
         </Route>
         <Route path="/about">
