@@ -11,10 +11,13 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[7.0].define(version: 2023_01_20_160554) do
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "comments", force: :cascade do |t|
     t.text "body"
-    t.integer "user_id", null: false
-    t.integer "parent_id"
+    t.bigint "user_id", null: false
+    t.bigint "parent_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["parent_id"], name: "index_comments_on_parent_id"
@@ -31,9 +34,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_20_160554) do
     t.integer "nutrition"
     t.integer "mental"
     t.boolean "therapy"
-    t.integer "user_id", null: false
+    t.bigint "user_id", null: false
     t.string "date"
-    t.integer "quote_id", null: false
+    t.bigint "quote_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["quote_id"], name: "index_journals_on_quote_id"
@@ -41,8 +44,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_20_160554) do
   end
 
   create_table "likes", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "comment_id", null: false
+    t.bigint "user_id", null: false
+    t.bigint "comment_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["comment_id"], name: "index_likes_on_comment_id"
