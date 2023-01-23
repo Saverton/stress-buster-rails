@@ -5,8 +5,6 @@ import SignUpForm from "../components/SignUpForm";
 import { Button } from "../styled-components/Buttons";
 import { PageTitle } from "../styled-components/Title";
 
-
-
 const Wrapper = styled.section`
   max-width: 500px;
   margin: 40px auto;
